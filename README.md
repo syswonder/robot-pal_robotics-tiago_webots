@@ -5,7 +5,7 @@ TIAGo Lite** simulated robot. It runs the whole system end to end with no robot
 hardware: differential-drive base, head RGB-D camera, planar lidar, and audio,
 plus mapping, navigation, and exploration.
 
-<img src="assets/robot.jpg" alt="Webots TIAGo Lite in the kitchen world" width="440">
+<img src="assets/robot.jpg" alt="Webots TIAGo Lite in the kitchen world" width="640">
 
 Bring up the simulator, boot Robonix against it, and drive the robot from
 `rbnx chat` with requests like `go to room 101`, `what can you see?`, or
