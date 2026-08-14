@@ -1,5 +1,5 @@
 catalog:
-  name: robonix.robot.syswonder.webots_tiago
+  name: robonix.robot.pal_robotics.tiago_webots
   version: 0.1.0
   description: Webots TIAGo Lite simulation deployment — differential-drive base, head RGB-D camera, planar lidar, audio, mapping, navigation and exploration, with no robot hardware required.
   license: MulanPSL-2.0

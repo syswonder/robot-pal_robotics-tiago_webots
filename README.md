@@ -1,6 +1,6 @@
-# robot-syswonder-webots_tiago
+# robot-pal_robotics-tiago_webots
 
-`robonix.robot.syswonder.webots_tiago` — Robonix deployment for the **Webots
+`robonix.robot.pal_robotics.tiago_webots` — Robonix deployment for the **Webots
 TIAGo Lite** simulated robot. It runs the whole system end to end with no robot
 hardware: differential-drive base, head RGB-D camera, planar lidar, and audio,
 plus mapping, navigation, and exploration.
@@ -27,7 +27,7 @@ export ROBONIX_SOURCE_PATH=/path/to/robonix
 ## Layout
 
 ```
-robot-syswonder-webots_tiago/
+robot-pal_robotics-tiago_webots/
 ├── sim/                       NOT a robonix package. Plain docker
 │   ├── start.sh               compose stack (Webots + eaios_webots).
 │   └── ...                    Bring up FIRST, before anything else.
