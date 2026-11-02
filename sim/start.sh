@@ -64,6 +64,7 @@ export ROBONIX_WEBOTS_WORLD="${ROBONIX_WEBOTS_WORLD:-office.wbt}"
 export ROBONIX_TIAGO_VARIANT="${ROBONIX_TIAGO_VARIANT:-lite}"
 export ROBONIX_WEBOTS_ROBOT="${ROBONIX_WEBOTS_ROBOT:-}"
 
+DETACH=0
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --world|-w)
@@ -81,13 +82,17 @@ while [[ $# -gt 0 ]]; do
       export ROBONIX_TIAGO_VARIANT="$2"
       shift 2
       ;;
+    --detach)
+      DETACH=1
+      shift
+      ;;
     --help|-h)
-      echo "Usage: $0 [--world WORLD.wbt] [--tiago-variant lite|full] [--robot ROBOT.urdf]"
+      echo "Usage: $0 [--world WORLD.wbt] [--tiago-variant lite|full] [--robot ROBOT.urdf] [--detach]"
       exit 0
       ;;
     *)
       echo "[sim/start] unknown argument: $1" >&2
-      echo "Usage: $0 [--world WORLD.wbt] [--tiago-variant lite|full] [--robot ROBOT.urdf]" >&2
+      echo "Usage: $0 [--world WORLD.wbt] [--tiago-variant lite|full] [--robot ROBOT.urdf] [--detach]" >&2
       exit 1
       ;;
   esac
@@ -287,6 +292,13 @@ echo "[sim/start] launching rviz2 (config: rviz2_default.rviz)"
 RVIZ_LOG="${TMPDIR:-/tmp}/rviz2-${USER:-rviz}.log"
 bash "$SCRIPT_DIR/start_rviz.sh" >"$RVIZ_LOG" 2>&1 &
 echo "[sim/start] rviz2 log: $RVIZ_LOG"
+
+# --detach returns once the simulator is up, for a caller that goes on to
+# boot Robonix itself (a Robonix Console boot hook); stop it with sim/stop.sh.
+if [[ "$DETACH" == 1 ]]; then
+  echo "[sim/start] simulator is up; stop it with bash sim/stop.sh"
+  exit 0
+fi
 
 # Stay foreground tailing logs so Ctrl-C is the natural stop pattern.
 exec docker compose "${CF[@]}" logs -f
