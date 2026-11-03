@@ -70,7 +70,6 @@ exec docker exec \
             wait "$DRIVER_PID"
             STATUS=$?
             set -e
-            kill "$TAIL_PID" 2>/dev/null || true
             wait "$TAIL_PID" 2>/dev/null || true
             exit "$STATUS"
             '
