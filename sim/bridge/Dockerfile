@@ -82,9 +82,11 @@ RUN sed -i \
 # exec`'d into this container. (Drivers themselves live on host; their
 # Python imports resolve against this image's site-packages + the
 # bind-mounted package dirs under /robonix_pkgs.)
+# mcp 2.x renamed FastMCP, which robonix-api still imports; keep the same
+# ceilings as pylib/robonix-api.
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
 RUN python3 -m pip install --no-cache-dir \
-    "grpcio>=1.78.0" "protobuf>=6.30,<7" mcp "fastmcp>=3" numpy Pillow uvicorn httpx \
+    "grpcio>=1.78.0" "protobuf>=6.30,<7" "mcp>=1.27,<2" "fastmcp>=3,<5" numpy Pillow uvicorn httpx \
     "websockets>=14,<17"
 
 ENV RMW_IMPLEMENTATION=rmw_zenoh_cpp
